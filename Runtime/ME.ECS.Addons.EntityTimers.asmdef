@@ -1,0 +1,19 @@
+{
+    "name": "ME.ECS.Addons.EntityTimers",
+    "rootNamespace": "",
+    "references": [
+        "ME.ECS",
+        "ME.ECS.FPMath",
+        "Unity.Mathematics",
+        "ME.ECS.IL2CPP"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
