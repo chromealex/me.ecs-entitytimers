@@ -39,7 +39,7 @@ namespace ME.ECS {
 
         public static void OnEntityDestroy(State state, in Entity entity) {
 
-            state.pluginsStorage.Get<TimersStorage>(ref state.allocator, TimersStorage.key).OnEntityDestroy(ref state.allocator, in entity);
+            if (TimersStorage.key > 0) state.pluginsStorage.Get<TimersStorage>(ref state.allocator, TimersStorage.key).OnEntityDestroy(ref state.allocator, in entity);
 
         }
 
