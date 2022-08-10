@@ -1,6 +1,6 @@
 {
   "name": "com.me.ecs.addons.entitytimers",
-  "version": "1.0.1",
+  "version": "1.0.7",
   "displayName": "ME.ECS Addon Entity Timers API",
   "description": "ME.ECS Addon Entity Timers API Package.",
   "unity": "2020.3",

@@ -22,6 +22,8 @@ namespace ME.ECS {
         public Dictionary<ulong, tfloat> values;
         public HashSet<uint> indexes;
 
+        public int GetKey() => TimersStorage.key;
+
         #if INLINE_METHODS
         [System.Runtime.CompilerServices.MethodImplAttribute(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         #endif
