@@ -51,7 +51,7 @@ namespace ME.ECS {
 
         }
 
-        public static void OnEntityDestroy(State state, in Entity entity) {
+        public static void OnEntityDestroy(State state, in Entity entity, bool destroyHierarchy) {
 
             state.pluginsStorage.GetOrCreate<TimersStorage>(ref state.allocator).OnEntityDestroy(ref state.allocator, in entity);
 
