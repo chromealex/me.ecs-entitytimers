@@ -7,20 +7,32 @@ using tfloat = System.Single;
 #endif
 
 namespace ME.ECS {
-
-    #if UNITY_EDITOR
-    [UnityEditor.InitializeOnLoadAttribute]
-    #endif
+    
     public static class WorldInitializer {
 
         public static DisposeStatic disposeStatic = new DisposeStatic();
+
+        private static bool initialized = false;
         
-        static WorldInitializer() {
+        #if UNITY_EDITOR
+        [UnityEditor.InitializeOnLoad]
+        private static class EditorInitializer {
+            static EditorInitializer() => WorldInitializer.Initialize();
+        }
+        #endif
 
-            WorldStaticCallbacks.RegisterCallbacks(InitResetState);
-            WorldStaticCallbacks.RegisterCallbacks(OnEntityDestroy);
-            WorldStaticCallbacks.RegisterCallbacks(OnWorldLifetimeStep);
+        [UnityEngine.RuntimeInitializeOnLoadMethodAttribute(UnityEngine.RuntimeInitializeLoadType.BeforeSceneLoad)]
+        private static void Initialize() {
+            
+            if (WorldInitializer.initialized == false) {
+                
+                WorldStaticCallbacks.RegisterCallbacks(InitResetState);
+                WorldStaticCallbacks.RegisterCallbacks(OnEntityDestroy);
+                WorldStaticCallbacks.RegisterCallbacks(OnWorldLifetimeStep);
 
+                WorldInitializer.initialized = true;
+            }
+            
         }
 
         public class DisposeStatic {
