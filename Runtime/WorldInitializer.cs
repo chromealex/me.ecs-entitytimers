@@ -40,6 +40,8 @@ namespace ME.ECS {
                 WorldStaticCallbacks.UnRegisterCallbacks(InitResetState);
                 WorldStaticCallbacks.UnRegisterCallbacks(OnEntityDestroy);
                 WorldStaticCallbacks.UnRegisterCallbacks(OnWorldLifetimeStep);
+
+                WorldInitializer.initialized = false;
             }
         }
         
@@ -51,7 +53,7 @@ namespace ME.ECS {
 
         public static void OnEntityDestroy(State state, in Entity entity) {
 
-            if (TimersStorage.key > 0) state.pluginsStorage.Get<TimersStorage>(ref state.allocator, TimersStorage.key).OnEntityDestroy(ref state.allocator, in entity);
+            state.pluginsStorage.GetOrCreate<TimersStorage>(ref state.allocator).OnEntityDestroy(ref state.allocator, in entity);
 
         }
 
@@ -59,7 +61,7 @@ namespace ME.ECS {
 
             if (step == ComponentLifetime.NotifyAllSystemsBelow) {
 
-                world.GetState().pluginsStorage.Get<TimersStorage>(ref world.GetState().allocator, TimersStorage.key).Update(ref world.GetState().allocator, deltaTime);
+                world.GetState().pluginsStorage.GetOrCreate<TimersStorage>(ref world.GetState().allocator).Update(ref world.GetState().allocator, deltaTime);
 
             }
 
