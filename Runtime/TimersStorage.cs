@@ -92,7 +92,7 @@ namespace ME.ECS {
             var key = MathUtils.GetKey((uint)entity.id, index);
             if (this.values.ContainsKey(in allocator, key) == true) {
 
-                this.values.GetValue(ref allocator, key) = time;
+                this.values[in allocator, key] = time;
 
             } else {
 
